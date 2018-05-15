@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "781132739671",
+    "firebase_url": "https://prime-burner-204101.firebaseio.com",
+    "project_id": "prime-burner-204101",
+    "storage_bucket": "prime-burner-204101.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781132739671:android:1bc78793756b9f34",
+        "android_client_info": {
+          "package_name": "quytu.miniproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "781132739671-h9g17pa1gvbq5qp45huge82u5m7pduag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmgUq_0Se_MTXdhbFieJfbOwV8l1dNxvo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
