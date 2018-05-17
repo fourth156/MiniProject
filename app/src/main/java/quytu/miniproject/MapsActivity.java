@@ -13,6 +13,11 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -20,6 +25,10 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import quytu.miniproject.fragments.MainFragment;
 
@@ -49,6 +58,37 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.On
                     .add(R.id.container_main, mainFragment)
                     .commit();
         }
+
+        String url = "http://ec2-34-218-246-230.us-west-2.compute.amazonaws.com:13097/get";
+
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray arr = new JSONArray(this);
+                            for (int i = 0; i < arr.length(); i++) {
+                                JSONObject obj = arr.getJSONObject(i);
+                                Double Lat = obj.getDouble("lat");
+                                Double Lng = obj.getDouble("long");
+                            }
+
+                        } catch (JSONException e) {
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
 
 
@@ -77,6 +117,9 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.On
     public void onLocationChanged(Location location) {
         Log.v("MAPS", "Long: " + location.getLongitude() + " - Lat: " + location.getLatitude());
         mainFragment.setUserMarker(new LatLng(location.getLatitude(), location.getLongitude()));
+        mainFragment.setCustomMarker(new LatLng(location.getLatitude() + 0.001, location.getLongitude() + 0.002));
+        mainFragment.setCustomMarker(new LatLng(location.getLatitude() + 0.02, location.getLongitude() + 0.003));
+        mainFragment.setCustomMarker(new LatLng(location.getLatitude() + 0.004, location.getLongitude() + 0.005));
     }
 
     @Override

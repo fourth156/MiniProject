@@ -88,6 +88,14 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
     }
 
+    public void setCustomMarker(LatLng latLng) {
+            MarkerOptions m = new MarkerOptions().position(latLng);
+            mMap.addMarker(m);
+
+
+        updateMapForZip("Somewhere");;
+    }
+
     private void updateMapForZip(String address) {
 
         ArrayList<PikachuLocation> locations = DataService.getInstance().getPikachuLocationsWithin2kms(address);
@@ -96,7 +104,6 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             PikachuLocation loc = locations.get(x);
             MarkerOptions marker = new MarkerOptions().position(new LatLng(loc.getLatitude(), loc.getLongitude()));
             marker.title(loc.getLocationTitle());
-            marker.snippet(loc.getLocationAddress());
             marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
             mMap.addMarker(marker);
         }

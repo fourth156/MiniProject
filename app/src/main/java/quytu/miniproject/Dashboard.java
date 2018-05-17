@@ -35,7 +35,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
             finish();
         }
         else if(v.getId() == R.id.btn_add_location) {
-            startActivity(new Intent(Dashboard.this, MapsActivity.class));
+            startActivity(new Intent(Dashboard.this, AddLocation.class));
             finish();
         }
         else if(v.getId() == R.id.btn_log_out) {
